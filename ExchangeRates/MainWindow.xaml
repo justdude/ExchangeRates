@@ -1,0 +1,27 @@
+﻿<Window x:Class="ExchangeRates.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+				xmlns:ViewModel ="clr-namespace:ExchangeRates.ViewModel"
+        Title="MainWindow" Height="179" Width="343">
+	<Window.DataContext>
+		<ViewModel:MainViewModel></ViewModel:MainViewModel>
+	</Window.DataContext>
+	
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="113*"/>
+			<RowDefinition Height="35*"/>
+		</Grid.RowDefinitions>
+		<ListBox ItemsSource="{Binding ExchangeRate}" Grid.RowSpan="2">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<TextBlock Text="{Binding Ccy}"></TextBlock>
+						<TextBlock Text="{Binding Buy}"></TextBlock>
+						<TextBlock Text="{Binding Sale}"></TextBlock>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+</Window>
