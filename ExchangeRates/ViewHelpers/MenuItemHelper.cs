@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace ExchangeRates
+namespace ExchangeRates.ViewHelpers
 {
     public static class MenuItemHelper
     {

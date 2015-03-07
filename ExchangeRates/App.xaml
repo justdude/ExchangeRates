@@ -10,7 +10,7 @@
 		
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="NotifyIconResources.xaml" />
+				<ResourceDictionary Source="View/NotifyIconResources.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 
