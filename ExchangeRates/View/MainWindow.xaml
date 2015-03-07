@@ -3,26 +3,37 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 				xmlns:ViewModel ="clr-namespace:ExchangeRates.ViewModel"
 				xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="MainWindow" Height="179" Width="343">
+        Title="MainWindow" Height="254" Width="482">
 	<Window.DataContext>
 		<ViewModel:MainViewModel></ViewModel:MainViewModel>
 	</Window.DataContext>
-	
+
 	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="113*"/>
-			<RowDefinition Height="35*"/>
-		</Grid.RowDefinitions>
-		<ListBox ItemsSource="{Binding ExchangeRate}" Grid.RowSpan="2">
-			<ListBox.ItemTemplate>
-				<DataTemplate>
-					<StackPanel>
-						<TextBlock Text="{Binding Ccy}"></TextBlock>
-						<TextBlock Text="{Binding Buy}"></TextBlock>
-						<TextBlock Text="{Binding Sale}"></TextBlock>
-					</StackPanel>
-				</DataTemplate>
-			</ListBox.ItemTemplate>
-		</ListBox>
+		<Controls:MetroTabControl>
+			<Controls:MetroTabItem Header="Настройки">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="113*"/>
+						<RowDefinition Height="35*"/>
+					</Grid.RowDefinitions>
+					<ListBox ItemsSource="{Binding ExchangeRate}" Grid.RowSpan="2">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel>
+									<TextBlock Text="{Binding Ccy}"></TextBlock>
+									<TextBlock Text="{Binding Buy}"></TextBlock>
+									<TextBlock Text="{Binding Sale}"></TextBlock>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</Grid>
+			</Controls:MetroTabItem>
+			<Controls:MetroTabItem Header="API Приват банк">
+			</Controls:MetroTabItem>
+			<Controls:MetroTabItem Header="Сайт finance.i.ua">
+			</Controls:MetroTabItem>
+		</Controls:MetroTabControl>
 	</Grid>
+
 </Controls:MetroWindow>
