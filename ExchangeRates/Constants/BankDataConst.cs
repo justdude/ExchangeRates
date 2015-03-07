@@ -1,5 +1,4 @@
-﻿using ExchangeRates.Data;
-using ExchangeRates.ViewModel;
+﻿using ExchangeRates.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

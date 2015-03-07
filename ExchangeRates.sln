@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRates", "ExchangeRates\ExchangeRates.csproj", "{A242D25F-C3D4-41AC-9E73-B34307B1BFD1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParseSite", "ParseSite\ParseSite.csproj", "{F72126FE-BD64-4867-B761-F2265E26C19B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,12 @@ Global
 		{A242D25F-C3D4-41AC-9E73-B34307B1BFD1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A242D25F-C3D4-41AC-9E73-B34307B1BFD1}.Release|x86.ActiveCfg = Release|x86
 		{A242D25F-C3D4-41AC-9E73-B34307B1BFD1}.Release|x86.Build.0 = Release|x86
+		{F72126FE-BD64-4867-B761-F2265E26C19B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F72126FE-BD64-4867-B761-F2265E26C19B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F72126FE-BD64-4867-B761-F2265E26C19B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F72126FE-BD64-4867-B761-F2265E26C19B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F72126FE-BD64-4867-B761-F2265E26C19B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F72126FE-BD64-4867-B761-F2265E26C19B}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

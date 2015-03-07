@@ -1,4 +1,4 @@
-using ExchangeRates.Data;
+using Data;
 using ExchangeRates.Handlers;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;

@@ -100,8 +100,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants\BankDataConst.cs" />
-    <Compile Include="Data\Bank.cs" />
-    <Compile Include="Data\KursData.cs" />
     <Compile Include="Handlers\PrivatHandler.cs" />
     <Compile Include="MenuItemHelper.cs" />
     <Compile Include="ViewModel\BankViewModel.cs" />
@@ -162,6 +160,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ParseSite\ParseSite.csproj">
+      <Project>{f72126fe-bd64-4867-b761-f2265e26c19b}</Project>
+      <Name>ParseSite</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

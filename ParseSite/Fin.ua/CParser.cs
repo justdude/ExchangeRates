@@ -1,4 +1,4 @@
-﻿using ExchangeRates.Data;
+﻿using Data;
 using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;

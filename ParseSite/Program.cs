@@ -1,14 +1,18 @@
-﻿using ExchangeRates.Data;
+﻿using Data;
 using HtmlAgilityPack;
+using Newtonsoft.Json;
 using ParseSite.Fin.ua;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace ParseSite
 {
+
     class Program
     {
         private const string SITE = @"http://finance.i.ua/";
@@ -20,8 +24,13 @@ namespace ParseSite
         {
 
             var cours = CParser.GetKursesFromFinUA(SITE, USD);
+						var arr = cours.Select( (b, d)=>{ return new BankData() {bank=b.Key, kurs=b.Value}; }).ToArray();
 
-            Console.ReadLine();
+						string res = JsonConvert.SerializeObject(arr, Formatting.None,new JsonSerializerSettings());
+
+						System.IO.File.WriteAllText("result.json", res);
+
+            Console.ReadKey();
         }
     }
 }
