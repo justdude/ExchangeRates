@@ -9,10 +9,24 @@ namespace ExchangeRates.ViewModel
 {
 	public class BankViewModel : ViewModelBase
 	{
+		#region Ctr
+		public BankViewModel(Bank bank)
+		{
+			BankData = bank;
+		}
+
+		public BankViewModel(string name, string url)
+		{
+			BankData = new Bank(name, url);
+		}
+		#endregion
+
+		#region Properties
 		public Bank BankData { get; private set; }
 
-		public string Name 
-		{ get
+		public string Name
+		{
+			get
 			{
 				return BankData.Name;
 			}
@@ -43,16 +57,6 @@ namespace ExchangeRates.ViewModel
 				RaisePropertyChanged("Url");
 			}
 		}
-		
-		public BankViewModel(Bank bank)
-		{
-			BankData = bank;
-		}
-
-		public BankViewModel(string name, string url)
-		{
-			BankData = new Bank(name, url);
-		}
-
+		#endregion
 	}
 }

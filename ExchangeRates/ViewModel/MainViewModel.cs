@@ -10,140 +10,151 @@ using System.Windows.Input;
 
 namespace ExchangeRates.ViewModel
 {
-
     public class MainViewModel : ViewModelBase
     {
+			#region Fields
 			private string mvSourceName;
 			private BankViewModel mvCurrentBank;
+			private object mvSelectedItem;
+			private DateTime updateTime;
+			#endregion
 
-        public MainViewModel()
-        {
-					CurrentBank = Banks[0];
-					ExchangeRate = new ObservableCollection<KursData>();
-					Update();
-        }
+			#region Ctr
+			public MainViewModel()
+			{
+				CurrentBank = Banks[0];
+				ExchangeRate = new ObservableCollection<KursData>();
+				Update();
+			} 
+			#endregion
 
-				public ICommand ShowWindowCommand
+			#region Commands
+			private RelayCommand<string> mvChangeBank;
+
+			public ICommand ShowWindowCommand
+			{
+				get
 				{
-					get
-					{
-						return new RelayCommand(
-							() =>
-							{
-								Application.Current.MainWindow = new MainWindow();
-								Application.Current.MainWindow.Show();
-							},
-							() => Application.Current.MainWindow == null
-						);
-					}
-				}
-
-				/// <summary>
-				/// Hides the main window. This command is only enabled if a window is open.
-				/// </summary>
-				public ICommand HideWindowCommand
-				{
-					get
-					{
-						return new RelayCommand(
-							() => Application.Current.MainWindow.Close(),
-							() => Application.Current.MainWindow != null
-						);
-					}
-				}
-
-				/// <summary>
-				/// Shuts down the application.
-				/// </summary>
-				public ICommand ExitApplicationCommand
-				{
-					get
-					{
-						return new RelayCommand (() => Application.Current.Shutdown());
-					}
-				}
-
-				public ICommand ChangeBank
-				{
-					get
-					{
-						if (mvChangeBank == null)
-							mvChangeBank = new RelayCommand<string>((p) =>
-							{
-								if (string.IsNullOrEmpty(p))
-									return;
-
-								var finded = Banks.Find(t => t.Name == p);
-								if (finded == null)
-									return;
-									CurrentBank = finded;
-
-								Update();
-							});
-
-						return mvChangeBank;
-					}
-				}
-
-				public ICommand About
-				{
-					get
-					{
-						return new RelayCommand(() =>
+					return new RelayCommand(
+						() =>
 						{
-							System.Diagnostics.Process.Start("http://vk.com/dude_just_dude");
+							Application.Current.MainWindow = new MainWindow();
+							Application.Current.MainWindow.Show();
+						},
+						() => Application.Current.MainWindow == null
+					);
+				}
+			}
+
+			/// <summary>
+			/// Hides the main window. This command is only enabled if a window is open.
+			/// </summary>
+			public ICommand HideWindowCommand
+			{
+				get
+				{
+					return new RelayCommand(
+						() => Application.Current.MainWindow.Close(),
+						() => Application.Current.MainWindow != null
+					);
+				}
+			}
+
+			/// <summary>
+			/// Shuts down the application.
+			/// </summary>
+			public ICommand ExitApplicationCommand
+			{
+				get
+				{
+					return new RelayCommand(() => Application.Current.Shutdown());
+				}
+			}
+
+			public ICommand ChangeBank
+			{
+				get
+				{
+					if (mvChangeBank == null)
+						mvChangeBank = new RelayCommand<string>((p) =>
+						{
+							if (string.IsNullOrEmpty(p))
+								return;
+
+							var finded = Banks.Find(t => t.Name == p);
+							if (finded == null)
+								return;
+							CurrentBank = finded;
+
+							Update();
 						});
-					}
-				}
 
-				public List<BankViewModel> Banks
+					return mvChangeBank;
+				}
+			}
+
+			public ICommand About
+			{
+				get
 				{
-					get
+					return new RelayCommand(() =>
 					{
-						return Constants.BankDataConst.Banks;
-					}
+						System.Diagnostics.Process.Start("http://vk.com/dude_just_dude");
+					});
 				}
+			} 
+			#endregion
 
-				public BankViewModel CurrentBank
+			#region Properties
+
+			public bool IsLoading { get; set; }
+
+			public List<BankViewModel> Banks
+			{
+				get
 				{
-					get
-					{
-						return mvCurrentBank;
-					}
-					set
-					{
-						mvCurrentBank = value;
-						RaisePropertyChanged("CurrentBank");
-					}
+					return Constants.BankDataConst.Banks;
 				}
+			}
 
-				public object SelectedItem
+			public BankViewModel CurrentBank
+			{
+				get
 				{
-					get
-					{
-						return mvSelectedItem;
-					}
-					set
-					{
-						mvSelectedItem = value;
-						RaisePropertyChanged("SelectedItem");
-					}
+					return mvCurrentBank;
 				}
-
-				public ObservableCollection<KursData> ExchangeRate { get; set; }
-				public string LastUpdateTime
+				set
 				{
-					get
-					{
-						var timeSpan = (updateTime - DateTime.Now);
-						return timeSpan.Seconds.ToString();
-					}
+					mvCurrentBank = value;
+					RaisePropertyChanged("CurrentBank");
 				}
+			}
 
-				public DateTime updateTime;
-				private object mvSelectedItem;
-				private RelayCommand<string> mvChangeBank;
-				
+			public object SelectedItem
+			{
+				get
+				{
+					return mvSelectedItem;
+				}
+				set
+				{
+					mvSelectedItem = value;
+					RaisePropertyChanged("SelectedItem");
+				}
+			}
+
+			public ObservableCollection<KursData> ExchangeRate { get; set; }
+			public string LastUpdateTime
+			{
+				get
+				{
+					var timeSpan = (updateTime - DateTime.Now);
+					return timeSpan.Seconds.ToString();
+				}
+			} 
+			#endregion
+
+			#region Methods
 				public void Update()
 				{
 					IsLoading = true;
@@ -155,7 +166,7 @@ namespace ExchangeRates.ViewModel
 					if (exchangeRate == null)
 						return;
 
-					foreach(var item in exchangeRate)
+					foreach (var item in exchangeRate)
 					{
 						ExchangeRate.Add(item);
 					}
@@ -167,9 +178,7 @@ namespace ExchangeRates.ViewModel
 				private void OnTimerTick()
 				{
 
-				}
-
-
-				public bool IsLoading { get; set; }
+				} 
+				#endregion
 		}
 }
