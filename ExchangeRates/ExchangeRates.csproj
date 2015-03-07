@@ -103,6 +103,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants\BankDataConst.cs" />
+    <Compile Include="Converters\WidthConverter.cs" />
     <Compile Include="Handlers\PrivatHandler.cs" />
     <Compile Include="ViewHelpers\MenuItemHelper.cs" />
     <Compile Include="ViewModel\BankViewModel.cs" />

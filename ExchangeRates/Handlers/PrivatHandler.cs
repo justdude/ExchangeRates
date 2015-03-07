@@ -31,6 +31,7 @@ namespace ExchangeRates.Handlers
 				string content = reader.ReadToEnd();
 
 				var items = JsonConvert.DeserializeObject<List<KursData>>(content);
+				
 				return items;//responce.Data;
 			}
 			catch (Exception ex)

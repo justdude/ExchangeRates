@@ -14,7 +14,7 @@ namespace Data
     }
 
 	[Serializable]
-	public class KursData
+	public class KursData :	IComparable<KursData>
 	{
 		[JsonProperty]
 		public string Ccy { get; set; } 	/*Код валюты (справочник кодов валют: https://ru.wikipedia.org/wiki/Коды_валют)*/
@@ -37,6 +37,15 @@ namespace Data
 			EntryDate = DateTime.Now;
 		}
 
+
+		#region IComparable<KursData> Members
+
+		public int CompareTo(KursData other)
+		{
+			return Ccy.CompareTo(other);
+		}
+
+		#endregion
 	}
 }
 

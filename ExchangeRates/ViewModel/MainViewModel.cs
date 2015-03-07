@@ -167,10 +167,18 @@ namespace ExchangeRates.ViewModel
 					if (exchangeRate == null)
 						return;
 
-					foreach (var item in exchangeRate)
-					{
-						ExchangeRate.Add(item);
-					}
+					var usd = exchangeRate.Find(p => p.Ccy.ToLower() == "usd");
+					var eur = exchangeRate.Find(p => p.Ccy.ToLower() == "eur");
+					var rub = exchangeRate.Find(p => p.Ccy.ToLower() == "rur");
+
+					ExchangeRate.Add(usd);
+					ExchangeRate.Add(eur);
+					ExchangeRate.Add(rub);
+
+					//foreach (var item in exchangeRate)
+					//{
+					//	ExchangeRate.Add(item);
+					//}
 
 					updateTime = DateTime.Now;
 					IsLoading = false;

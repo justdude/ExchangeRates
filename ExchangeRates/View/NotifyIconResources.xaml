@@ -4,9 +4,12 @@
 										xmlns:ExchangeRates="clr-namespace:ExchangeRates.View"
                     xmlns:ViewModel="clr-namespace:ExchangeRates.ViewModel"
 										xmlns:Helpers="clr-namespace:ExchangeRates.ViewHelpers"
+										xmlns:Converters="clr-namespace:ExchangeRates.Converters"
 										xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
 										>
 
+
+	<Converters:WidthConverter x:Key="widthConverter"></Converters:WidthConverter>
     <!-- The taskbar context menu - the first row is a dummy to show off simple data binding -->
     <!--
         The "shared" directive is needed if we reopen the sample window a few times - WPF will otherwise
@@ -48,7 +51,7 @@
 		<Style x:Key="TextBlockHeader" TargetType="TextBlock">
 		<Setter Property="TextWrapping" Value="Wrap"></Setter>
 		<Setter Property="FontWeight" Value="Normal"></Setter>
-		<Setter Property="FontSize" Value="14"></Setter>
+		<Setter Property="FontSize" Value="11"></Setter>
 		<Setter Property="Foreground" Value="Black"></Setter>
 		</Style>
 
@@ -61,19 +64,26 @@
         <!-- self-assign a data context (could also be done programmatically) -->
 		<tb:TaskbarIcon.TrayToolTip>
 			<Border
-        Background="Gray"
-        BorderBrush="Blue"
-        BorderThickness="1"
-        CornerRadius="6"
-        Opacity="0.85"
-        MinWidth="160"
+        Background="WhiteSmoke"
+        BorderBrush="Green"
+        BorderThickness="2"
+				Name="border"
+        Opacity="0.95"
         MinHeight="40">
 				<StackPanel>
 
-					<TextBlock Style="{StaticResource ResourceKey=TextBlockHeader}" 
+					<TextBlock Style="{StaticResource ResourceKey=TextBlockHeader}"
+										 TextWrapping="Wrap"
+										 MaxWidth="170"
+										 HorizontalAlignment="Center"
+										 VerticalAlignment="Center"
 										 Text="{Binding CurrentBank.Name}"></TextBlock>
-					<TextBlock Style="{StaticResource ResourceKey=TextBlockHeader}" 
-										 Text="{Binding LastUpdateTime}"></TextBlock>
+					<Border HorizontalAlignment="Stretch" Margin="5,4,4,2" Height="1" Background="Gray"/>
+					<TextBlock Style="{StaticResource ResourceKey=TextBlockHeader}"
+										 HorizontalAlignment="Left"
+										 VerticalAlignment="Center"
+										 Margin="6,0,0,0"
+										 Text="{Binding LastUpdateTime, StringFormat=Обновлено {0} с назад}"></TextBlock>
 
 					<ListView   Background="WhiteSmoke"
 											FontSize="12"
@@ -81,10 +91,16 @@
 						<ListView.View>
 							<GridView>
 								<GridViewColumn Header="Ccy"
+																Width="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ListView}},
+									Converter={StaticResource ResourceKey=widthConverter},ConverterParameter=40}"
 																DisplayMemberBinding="{Binding Ccy}"></GridViewColumn>
 								<GridViewColumn Header="Buy"
+																Width="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ListView}},
+									Converter={StaticResource ResourceKey=widthConverter},ConverterParameter=65}"
 																DisplayMemberBinding="{Binding Buy}"></GridViewColumn>
 								<GridViewColumn Header="Sale"
+																Width="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ListView}},
+									Converter={StaticResource ResourceKey=widthConverter},ConverterParameter=65}"
 																DisplayMemberBinding="{Binding Sale}"></GridViewColumn>
 							</GridView>
 						</ListView.View>
