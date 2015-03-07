@@ -4,6 +4,7 @@
 										xmlns:ExchangeRates="clr-namespace:ExchangeRates.View"
                     xmlns:ViewModel="clr-namespace:ExchangeRates.ViewModel"
 										xmlns:Helpers="clr-namespace:ExchangeRates.ViewHelpers"
+										xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
 										>
 
     <!-- The taskbar context menu - the first row is a dummy to show off simple data binding -->
